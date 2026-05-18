@@ -5,8 +5,10 @@ const axios = require('axios'); // Cliente HTTP para fazer requisições externa
 const app = express();
 
 // Middlewares
-app.use(cors()); // Habilita CORS para permitir chamadas de origens diferentes
-app.use(express.json()); // Faz o parsing do body em JSON nas requisições
+app.use(
+  cors(),
+  express.json()
+);
 
 // Healthcheck: simples endpoint para verificar se o serviço está respondendo
 app.get('/api/v1/health', (req, res) => {
@@ -140,6 +142,3 @@ if (process.env.NODE_ENV !== 'test') {
     console.log(`O Servidor Online em http://localhost:${PORT}`);
   });
 }
-
-// Exporta a instância do Express para permitir testes e reuso em outros módulos
-module.exports = app;
