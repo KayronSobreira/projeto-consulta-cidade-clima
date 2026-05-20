@@ -8,17 +8,25 @@ export const listarCidades = async (estado) => {
 
         const response = await fetch(`${brasilApiUrl}ibge/municipios/v1/${estado}`);
         const data = await response.json();
+
+        if(response.status !== 200) {
+            return {
+                status: 'error',
+                message: 'Erro na resposta da API do BrasilAPI ao buscar cidades'
+            };
+        }
+
         return {
             status: 'success',
+            message: `Cidades do estado ${estado} listadas com sucesso`,
             data: data.map(cidade => ({ nome: cidade.nome }))
         };
 
     } catch (error) {
 
-        console.error('Erro ao buscar cidades:', error);
         return {
             status: 'error',
-            data: null
+            message: 'Erro ao buscar cidades'
         };
 
     }   
@@ -33,24 +41,25 @@ export const brasilApiHealth = async () => {
         const data = await response.json();
 
         // Verifica se a resposta da API foi bem-sucedida
-        if (response.status === 200) {
-            return {
-                status: 'success',
-            };
-        // Caso contrário, retorna um status de erro
-        } else {
+        if(response.status !== 200) {
             return {
                 status: 'error',
-                message: "O BrasilAPI não está respondendo"
+                message: 'Erro na resposta da API do BrasilAPI'
             };
         }
+
+        return {
+            status: 'success',
+            message: 'API do BrasilAPI está respondendo normalmente'
+        };
         
     } catch (error) {
-        console.error('Erro ao verificar saúde da API do BrasilAPI:', error);
+
         return {
             status: 'error',
             message: "erro ao verificar saúde da API do BrasilAPI"
         };
+
     }
     
 };

@@ -14,14 +14,14 @@ export const buscarClimaAtual = async (latitude, longitude) => {
         if (response.status !== 200) {
             return {
                 status: 'error',
-                message: "erro ao buscar clima atual",
-                data: null
+                message: "erro ao buscar clima atual"
             };
         }
 
         //caso seja bem-sucedida, retorna os dados do clima atual
         return {
             status: 'success',
+            message: "clima atual encontrado com sucesso",
             data: data
         };
 
@@ -30,7 +30,6 @@ export const buscarClimaAtual = async (latitude, longitude) => {
         return {
             status: 'error',
             message: "erro ao buscar clima atual",
-            data: null
         };
     }
 };
@@ -53,12 +52,12 @@ export const openMeteoHealth = async () => {
                 message: "O OpenMeteo não está respondendo",
            };
         }
+
     } catch (error) {
 
         return {
             status: 'error',
             message: "erro ao verificar saúde da API do OpenMeteo",
-            data: null
         };
     }
 };
