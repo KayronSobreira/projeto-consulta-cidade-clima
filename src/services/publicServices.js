@@ -1,4 +1,7 @@
-import {listarCidades} from '../APIs/brasilAPI.js';
+//Importa as APIs necessárias para o funcionamento do projeto
+import {listarCidades, brasilApiHealth} from "../APIs/brasilApi.js";
+import {buscarCoordenadasCidade, geocodingHealthCheck} from "../APIs/geoCoding.js";
+import {buscarClimaAtual, openMeteoHealth} from "../APIs/openMeteo.js";
 
 export const listarCidadesService = async (estado) => {
     
@@ -8,7 +11,6 @@ export const listarCidadesService = async (estado) => {
     }
     catch (error) {
         console.error(error);
-        throw new Error('Erro ao listar as cidades');
     }
 
 }

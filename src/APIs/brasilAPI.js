@@ -9,21 +9,32 @@ export const listarCidades = async (estado) => {
         const response = await fetch(`${brasilApiUrl}ibge/municipios/v1/${estado}`);
         const data = await response.json();
 
-        if(response.status !== 200) {
+        //Verifica se a resposta da API foi bem-sucedida ou se o estado não foi encontrado
+        if(response.status != 200 && response.status != 400) {
             return {
                 status: 'error',
                 message: 'Erro na resposta da API do BrasilAPI ao buscar cidades'
             };
         }
 
+        // Verifica se o estado não foi encontrado
+        if(response.status == 400) {
+            return {
+                status: 'not_found',
+                message: 'Estado não encontrado'
+            };
+        }
+
+        // Retorna a lista de cidades do estado solicitado.
         return {
             status: 'success',
-            message: `Cidades do estado ${estado} listadas com sucesso`,
-            data: data.map(cidade => ({ nome: cidade.nome }))
+            estado: estado,
+            quantidade: data.length,
+            cidades: data.map(cidade => ({ nome: cidade.nome }))
         };
 
     } catch (error) {
-
+        // Em caso de erro na requisição, retorna uma mensagem de erro genérica.
         return {
             status: 'error',
             message: 'Erro ao buscar cidades'
