@@ -20,7 +20,7 @@ export const buscarCoordenadasCidade = async (nomeCidade) => {
         return {
             status: 'success',
             message: 'Coordenadas da cidade encontradas com sucesso',
-            data: data.results
+            data: data.results[0]
         };
 
     } catch (error) {

@@ -46,24 +46,23 @@ export const buscarClimaService = async (cidade) => {
             };
         };
 
-        const clima = await buscarClima(coordenadas.data.latitude, coordenadas.data.longitude);
+        const consultaClima = await buscarClima(data.latitude, data.longitude);
 
         //verifica se a resposta da API do BrasilAPI foi bem-sucedida
-        if (clima.status === 'error') {
+        if (consultaClima.status === 'error') {
             return {
                 status: 'error',
-                message: clima.message
+                message: consultaClima.message
             };
         };
 
         return {
             status: 'success',
             cidade: cidade,
-            coordenadas: {
-                latitude: coordenadas.data.latitude,
-                longitude: coordenadas.data.longitude
-            },
-            clima: clima
+            estado: consultaClima.data.estado,
+            clima: consultaClima.data.clima[0],
+            unidades: {temperatura: '°C'},
+            consultado_em: new Date().toISOString()
         };
 
     } catch (error) {
