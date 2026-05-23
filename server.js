@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 
-//Importa as rotas
-//import utilsRoutes from './src/routes/utilsRoutes.js';
+// Importa as rotas
+import utilsRoutes from './src/routes/utilsRoutes.js';
 import publicRoutes from './src/routes/publicRoutes.js';
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(
   express.json()
 );
 
-app.use('/', publicRoutes);
+app.use('/', publicRoutes, utilsRoutes);
 
 // Inicia o servidor somente quando não estiver em ambiente de teste.
 const PORT = 3000;
