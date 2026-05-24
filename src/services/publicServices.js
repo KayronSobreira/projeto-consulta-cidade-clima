@@ -3,6 +3,24 @@ import {listarCidades, buscarClima, brasilApiHealth} from "../APIs/brasilApi.js"
 import {buscarCoordenadasCidade, geocodingHealthCheck} from "../APIs/geoCoding.js";
 
 export const listarCidadesService = async (estado, limite) => {
+
+    //Excessões de validação.
+    if (!estado) {
+        return {
+            status: 'error',
+            http_code: 400,
+            message: 'O parâmetro "estado" é obrigatório'
+        };
+    };
+
+    if(estado.length !== 2) {
+        return {
+            status: 'error',
+            http_code: 400,
+            message: 'O parâmetro "estado" deve conter exatamente 2 caracteres'
+        };
+    };
+
     
     try {
         const consultaCidades = await listarCidades(estado, limite);
@@ -19,7 +37,7 @@ export const listarCidadesService = async (estado, limite) => {
         }
         
         return {
-            nome: estado,
+            uf: listaCidades[0].estado,
             qtdade: listaCidades.length,
             cidades: listaCidades
         };
@@ -34,19 +52,31 @@ export const listarCidadesService = async (estado, limite) => {
 export const buscarClimaService = async (cidade) => {
 
     try {
-        // Primeiro, buscamos as coordenadas da cidade usando a API de geocoding
-        const coordenadas = await buscarCoordenadasCidade(cidade);
-        const data = coordenadas.data;
+        // Busca as coordenadas da cidade usando a API de geocoding
+        const reqCoordenadas = await buscarCoordenadasCidade(cidade);
 
-        // Verificamos se a resposta da API de geocoding foi bem-sucedida
-        if (data.status === 'error') {
+        // Verifica se a resposta da API de geocoding foi bem-sucedida
+        if (reqCoordenadas.status === 'error') {
             return {
                 status: 'error',
-                message: data.message
+                message: reqCoordenadas.message
             };
         };
 
-        const consultaClima = await buscarClima(data.latitude, data.longitude);
+        //caso seja bem sucedida, armazenamos as coordenadas para usar na consulta do clima
+        const coordenadas = reqCoordenadas.data;
+
+        //verifica se as coordenadas obtidas são do brasil, caso contrário, retorna um erro informando que a cidade não é válida
+        if (coordenadas.country_code !== 'BR') {
+            return {
+                status: 'error',
+                message: 'Cidade não localizada no Brasil'
+            };
+        };
+
+        //Busca o clima da cidade usando as coordenadas obtidas e a API do BrasilAPI
+        console.log("Coordenadas obtidas:", coordenadas);
+        const consultaClima = await buscarClima(coordenadas.latitude, coordenadas.longitude);
 
         //verifica se a resposta da API do BrasilAPI foi bem-sucedida
         if (consultaClima.status === 'error') {
@@ -56,17 +86,19 @@ export const buscarClimaService = async (cidade) => {
             };
         };
 
+        const dadosClima = consultaClima.data;
+
         return {
             status: 'success',
-            cidade: cidade,
-            estado: consultaClima.data.estado,
-            clima: consultaClima.data.clima[0],
+            cidade: dadosClima.cidade,
+            estado: dadosClima.estado,
+            clima: dadosClima.clima[0],
             unidades: {temperatura: '°C'},
             consultado_em: new Date().toISOString()
         };
 
     } catch (error) {
-        console.error(error);
+        console.log("Erro do serviço de busca de clima:", error);
         // Em caso de erro na requisição, retorna uma mensagem de erro genérica.
         return {
             status: 'error',

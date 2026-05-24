@@ -10,10 +10,10 @@ export const buscarCoordenadasCidade = async (nomeCidade) => {
         const response = await fetch(`${geocodingUrl}search?name=${encodeURIComponent(nomeCidade)}&count=1&language=pt&format=json`);
         const data = await response.json();
 
-        if(!data.results || response.status !== 200) {
+        if(!data.results || data.results.length === 0) {
            return {
                 status: 'error',
-                message: 'Cidade não encontrada ou erro na resposta da API de geocoding'
+                message: 'Cidade não encontrada'
            }
         }
 
