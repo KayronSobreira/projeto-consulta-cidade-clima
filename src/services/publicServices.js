@@ -20,6 +20,7 @@ export const listarCidadesService = async (estado, limite) => {
         const consultaCidades = await listarCidades(estado, limite);
         let listaCidades = [];
         let qtdadeCidades = 0;
+        let erro, http_code, message, codigo, sigla_uf_informada;
 
         //verificar se a quantidade de cidades solicitada é maior que zero, caso seja,
         //limitar a lista de cidades ao número solicitado, caso contrário, retornar todas as cidades
@@ -35,7 +36,7 @@ export const listarCidadesService = async (estado, limite) => {
             return {
                 erro: true,
                 http_code: consultaCidades.status_code || 500,
-                codigo: status.message || 'UF NAO_ENCONTRADA',
+                codigo: consultaCidades.message || 'UF NAO_ENCONTRADA',
                 sigla_uf_informada: estado
             }
         };
