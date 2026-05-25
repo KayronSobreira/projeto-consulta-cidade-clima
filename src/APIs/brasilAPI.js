@@ -14,32 +14,38 @@ export const listarCidades = async (estado) => {
             case 200:
                 return {
                     status: 'success',
+                    status_code: 200,
                     estado: estado,
                     cidades: data.map(cidade => ({ nome: cidade.nome }))
                 };
             case 400:
                 return {
                     status: 'error',
+                    status_code: 400,
                     message: "UF ausente ou com formato inválido"
                 };
             case 404:
                 return {
                     status: 'error',
+                    status_code: 404,
                     message: "Sigla não corresponde a um estado válido do Brasil"
                 }
             case 422:
                 return {
                     status: 'error',
+                    status_code: 422,
                     message: "Parâmetro de estado inválido ou vazio"
                 };
             case 500:
                 return {
                     status: 'error',
+                    status_code: 500,
                     message: "Erro interno ao consultar a API do BrasilAPI"
                 };
             default:
                 return {
                     status: 'error',
+                    status_code: 500,
                     message: "Erro Inesperado ao consultar a API do BrasilAPI"
                 };       
         };
@@ -48,6 +54,7 @@ export const listarCidades = async (estado) => {
         // Em caso de erro na requisição, retorna uma mensagem de erro genérica.
         return {
             status: 'error',
+            status_code: 500,
             message: 'Erro na requisição à API do BrasilAPI',
         };
 

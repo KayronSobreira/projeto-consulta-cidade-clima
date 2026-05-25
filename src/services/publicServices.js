@@ -4,20 +4,14 @@ import {buscarCoordenadasCidade, geocodingHealthCheck} from "../APIs/geoCoding.j
 
 export const listarCidadesService = async (estado, limite) => {
 
-    //Excessões de validação.
-    if (!estado) {
+    //Valida se a sigla é válida.
+    if(estado.length !== 2 || !estado) {
         return {
-            status: 'error',
+            erro: true,
             http_code: 400,
-            message: 'O parâmetro "estado" é obrigatório'
-        };
-    };
-
-    if(estado.length !== 2) {
-        return {
-            status: 'error',
-            http_code: 400,
-            message: 'O parâmetro "estado" deve conter exatamente 2 caracteres'
+            codigo: 'SIGLA_UF_INVALIDA',
+            message: 'A sigla do estado deve conter exatamente 2 letras',
+            sigla_uf_informada: estado
         };
     };
 
@@ -35,6 +29,16 @@ export const listarCidadesService = async (estado, limite) => {
         else{
             listaCidades = consultaCidades.cidades;
         }
+
+        //verifica se a resposta foi bem sucedida:
+        if(consultaCidades.status === 'error') {
+            return {
+                erro: true,
+                http_code: consultaCidades.status_code || 500,
+                codigo: status.message || 'UF NAO_ENCONTRADA',
+                sigla_uf_informada: estado
+            }
+        };
         
         return {
             uf: listaCidades[0].estado,
