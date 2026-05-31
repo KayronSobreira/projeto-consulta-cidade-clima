@@ -8,8 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest",
-    "start": "node ./server.js"
+    "start": "node ./server.js",
+    "test": "node ./tests/api_test.js"
   },
   "keywords": [],
   "author": "",
@@ -17,11 +17,10 @@
   "type": "module",
   "dependencies": {
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "newman": "^6.2.2"
   },
   "devDependencies": {
-    "jest": "^30.3.0",
-    "nodemon": "^3.1.14",
-    "supertest": "^7.2.2"
+    "nodemon": "^3.1.14"
   }
 }

@@ -32,9 +32,23 @@ export const buscarClimaController = async (req, res) => {
     try {
         const cidade = req.params.cidade;
         const clima = await buscarClimaService(cidade);
+
+        if(clima.erro === true) {
+            return res.status(clima.http_code).json({
+                erro: clima.erro,
+                codigo: clima.codigo,
+                message: clima.message,
+                nome_informado: clima.nome_informado,
+                servico: clima.servico
+            });
+        };
+
         res.json(clima);
+
     } catch (error) {
+
         console.error(error);
         res.status(500).json({ error: 'Erro ao buscar o clima' });
+
     }
 };

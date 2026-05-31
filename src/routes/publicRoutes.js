@@ -4,7 +4,7 @@ import {listarCidadesController, buscarClimaController} from '../controller/publ
 const router = express.Router();
 
 //rota para listar cidades
-router.get('/cidades/:estado', listarCidadesController);
+router.get('/api/v1/cidades/:estado', listarCidadesController);
 
 //rota para buscar clima
 router.get('/api/v1/clima/:cidade', buscarClimaController);

@@ -1,10 +1,10 @@
-import {heathCheckService} from '../services/utilsServices.js';
+import {healthCheckService} from '../services/utilsServices.js';
 
 
 export const healthCheckController = async (req, res) => {
 
     try {
-        const healthStatus = await heathCheckService();
+        const healthStatus = await healthCheckService();
         res.json(healthStatus);
 
     } catch (error) {

@@ -1,0 +1,1000 @@
+{
+  "info": {
+    "_postman_id": "38c5e290-c9ea-435b-89b0-3728cdfcad7a",
+    "name": "Projeto consulta cidade clima",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53364741",
+    "_collection_link": "https://go.postman.co/collection/53364741-38c5e290-c9ea-435b-89b0-3728cdfcad7a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Testa a Rota de health",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// verifica se os campos esperados estão presentes na resposta\r",
+              "pm.test(\"Verifica se os campos esperados estão presentes na resposta\", function () {\r",
+              "    pm.expect(pm.response.json().status).to.be.a(\"string\");\r",
+              "    pm.expect(pm.response.json().versao).to.be.a(\"string\");\r",
+              "    pm.expect(pm.response.json().timestamp).to.be.a(\"string\");\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Lista as cidades do Ceará",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o campo uf é igual a \"CE\"\r",
+              "pm.test(\"Verifica se o campo uf é igual a 'CE'\", function () {\r",
+              "    pm.expect(pm.response.json().uf).to.eql(\"CE\");\r",
+              "    });\r",
+              "\r",
+              "//verifica a quantidade de ciadades retornadas\r",
+              "pm.test(\"Verifica se a quantidade de cidades retornadas é igual a 184\", function () {\r",
+              "    pm.expect(pm.response.json().quantidade_retornada).to.eql(184);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/CE",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "CE"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Lista as cidades de São Paulo",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o campo uf é igual a \"CE\"\r",
+              "pm.test(\"Verifica se o campo uf é igual a SP\", function () {\r",
+              "    pm.expect(pm.response.json().uf).to.eql(\"SP\");\r",
+              "    });\r",
+              "\r",
+              "//verifica a quantidade de ciadades retornadas\r",
+              "pm.test(\"Verifica se a quantidade de cidades retornadas é igual a 645\", function () {\r",
+              "    pm.expect(pm.response.json().quantidade_retornada).to.eql(645);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/SP",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "SP"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Lista as cidades de Brasilia",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o campo uf é igual a \"SP\"\r",
+              "pm.test(\"Verifica se o campo uf é igual a DF\", function () {\r",
+              "    pm.expect(pm.response.json().uf).to.eql(\"DF\");\r",
+              "    });\r",
+              "\r",
+              "//verifica a quantidade de ciadades retornadas\r",
+              "pm.test(\"Verifica se a quantidade de cidades retornadas é igual a 1\", function () {\r",
+              "    pm.expect(pm.response.json().quantidade_retornada).to.eql(1);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/DF",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "DF"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Lista as cidades de Salvador",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o campo uf é igual a \"CE\"\r",
+              "pm.test(\"Verifica se o campo uf é igual a BA\", function () {\r",
+              "    pm.expect(pm.response.json().uf).to.eql(\"BA\");\r",
+              "    });\r",
+              "\r",
+              "//verifica a quantidade de ciadades retornadas\r",
+              "pm.test(\"Verifica se a quantidade de cidades retornadas é igual a 417\", function () {\r",
+              "    pm.expect(pm.response.json().quantidade_retornada).to.eql(417);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/BA",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "BA"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Lista as cidades de Belo Horizonte",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o campo uf é igual a \"CE\"\r",
+              "pm.test(\"Verifica se o campo uf é igual a MG\", function () {\r",
+              "    pm.expect(pm.response.json().uf).to.eql(\"MG\");\r",
+              "    });\r",
+              "\r",
+              "//verifica a quantidade de ciadades retornadas\r",
+              "pm.test(\"Verifica se a quantidade de cidades retornadas é igual a 853\", function () {\r",
+              "    pm.expect(pm.response.json().quantidade_retornada).to.eql(853);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/MG",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "MG"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Lista as cidades de Curitiba",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o campo uf é igual a \"CE\"\r",
+              "pm.test(\"Verifica se o campo uf é igual a PR\", function () {\r",
+              "    pm.expect(pm.response.json().uf).to.eql(\"PR\");\r",
+              "    });\r",
+              "\r",
+              "//verifica a quantidade de ciadades retornadas\r",
+              "pm.test(\"Verifica se a quantidade de cidades retornadas é igual a 399\", function () {\r",
+              "    pm.expect(pm.response.json().quantidade_retornada).to.eql(399);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/PR",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "PR"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Lista as cidades de Manaus",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o campo uf é igual a \"CE\"\r",
+              "pm.test(\"Verifica se o campo uf é igual a AM\", function () {\r",
+              "    pm.expect(pm.response.json().uf).to.eql(\"AM\");\r",
+              "    });\r",
+              "\r",
+              "//verifica a quantidade de ciadades retornadas\r",
+              "pm.test(\"Verifica se a quantidade de cidades retornadas é igual a 62\", function () {\r",
+              "    pm.expect(pm.response.json().quantidade_retornada).to.eql(62);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/AM",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "AM"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. Tenta listar as cidades de um município inválido",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o código de status é 400\r",
+              "pm.test(\"Verifica se o código de status é 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "    });\r",
+              "\r",
+              "//Verifica se identifica corretamente a sigla do estado inválida\r",
+              "pm.test(\"Verifica se a sigla do estado é inválida\", function () {\r",
+              "    pm.expect(pm.response.json().error).to.be.true;\r",
+              "    pm.expect(pm.response.json().codigo).to.equal(\"SIGLA_UF_INVALIDA\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/A",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "A"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. Tenta listar as cidades de um município inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o código de status é 404\r",
+              "pm.test(\"Verifica se o código de status é 404\", function () {\r",
+              "    pm.response.to.have.status(404);\r",
+              "    });\r",
+              "\r",
+              "//Verifica se identifica corretamente a sigla do estado inexistente\r",
+              "pm.test(\"Verifica se a sigla do estado é retornada corretamente como inexistente\", function () {\r",
+              "    pm.expect(pm.response.json().error).to.be.true;\r",
+              "    pm.expect(pm.response.json().codigo).to.equal(\"UF NÃO ENCONTRADA\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/cidades/as",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "cidades",
+            "as"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "11. Verifica os dados de clima de Fortaleza",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é Fortaleza\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"Fortaleza\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é CE\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"CE\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/fortaleza",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "fortaleza"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "12. Verifica os dados de clima de São Paulo",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é São Paulo\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"São Paulo\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é SP\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"SP\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Sao Paulo",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Sao Paulo"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "13. Verifica os dados de clima de Rio de Janeiro",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é Rio de Janeiro\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"Rio de Janeiro\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é RJ\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"RJ\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Rio de Janeiro",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Rio de Janeiro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "14. Verifica os dados de clima de Brasilia",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é Brasília\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"Brasília\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é DF\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"DF\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Brasilia",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Brasilia"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "15. Verifica os dados de clima de Salvador",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é Salvador\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"Salvador\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é BA\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"BA\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Salvador",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Salvador"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "16. Verifica os dados de clima de Belo Horizonte",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é Belo Horizonte\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"Belo Horizonte\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é MG\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"MG\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Belo Horizonte",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Belo Horizonte"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "17. Verifica os dados de clima de Curitiba",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é Curitiba\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"Curitiba\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é PR\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"PR\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Curitiba",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Curitiba"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "18. Verifica os dados de clima de Manaus",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//verifica se o nome da cidade é Fortaleza\r",
+              "pm.test(\"Verifica se o nome da cidade é Manaus\", function () {\r",
+              "    pm.expect(pm.response.json().nome).to.eql(\"Manaus\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se o estado da cidade é CE\r",
+              "pm.test(\"Verifica se o estado da cidade é AM\", function () {\r",
+              "    pm.expect(pm.response.json().estado).to.eql(\"AM\");\r",
+              "    });\r",
+              "\r",
+              "//verifica se os dados da clima estão presentes\r",
+              "pm.test(\"Verifica se os dados da clima estão presentes\", function () {\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"condicao_desc\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"min\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"max\");\r",
+              "    pm.expect(pm.response.json().clima).to.have.property(\"indice_uv\");\r",
+              "});\r",
+              "\r",
+              "//verifica se a data de consulta está condizente\r",
+              "pm.test(\"Verifica se a data de consulta está condizente\", function () {\r",
+              "    const dataAtual = new Date();\r",
+              "    const dataConsulta = new Date(pm.response.json().consultado_em);\r",
+              "    pm.expect(dataConsulta).to.be.at.most(dataAtual);\r",
+              "    });"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Manaus",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Manaus"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "19. Retorna erro para cidades inválidas",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Verifica se o erro foi retornado corretamente\r",
+              "pm.test(\"Erro de cidade não encontrada\", function () {\r",
+              "    pm.expect(pm.response.json().erro).to.be.true;\r",
+              "});\r",
+              "\r",
+              "//Verifica se o código de erro é o esperado\r",
+              "pm.test(\"Código de erro\", function () {\r",
+              "    pm.expect(pm.response.json().codigo).to.equal(\"CIDADE NAO ENCONTRADA\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/novigrad",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "novigrad"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "20. Retorna erro para cidades de fora do Brasil",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Verifica se o erro foi retornado corretamente\r",
+              "pm.test(\"Erro de cidade não encontrada\", function () {\r",
+              "    pm.expect(pm.response.json().erro).to.be.true;\r",
+              "});\r",
+              "\r",
+              "//Verifica se o código de erro é o esperado\r",
+              "pm.test(\"O codigo de erro corresponde ao esperado\", function () {\r",
+              "    pm.expect(pm.response.json().codigo).to.equal(\"CIDADE NAO ENCONTRADA\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/clima/Nürburg",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "clima",
+            "Nürburg"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

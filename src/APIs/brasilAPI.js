@@ -22,31 +22,31 @@ export const listarCidades = async (estado) => {
                 return {
                     status: 'error',
                     status_code: 400,
-                    message: "UF ausente ou com formato inválido"
+                    message: "UF AUSENTE OU COM FORMATO INVÁLIDO"
                 };
             case 404:
                 return {
                     status: 'error',
                     status_code: 404,
-                    message: "Sigla não corresponde a um estado válido do Brasil"
+                    message: "UF NÃO ENCONTRADA"
                 }
             case 422:
                 return {
                     status: 'error',
                     status_code: 422,
-                    message: "Parâmetro de estado inválido ou vazio"
+                    message: "ESTADO COM A SIGLA INFORMADA NÃO FOI ENCONTRADO"
                 };
             case 500:
                 return {
                     status: 'error',
                     status_code: 500,
-                    message: "Erro interno ao consultar a API do BrasilAPI"
+                    message: "ERRO INTERNO AO CONSULTAR A API DO BRASILAPI"
                 };
             default:
                 return {
                     status: 'error',
                     status_code: 500,
-                    message: "Erro Inesperado ao consultar a API do BrasilAPI"
+                    message: "ERRO INESPERADO AO CONSULTAR A API DO BRASILAPI"
                 };       
         };
 
@@ -55,7 +55,7 @@ export const listarCidades = async (estado) => {
         return {
             status: 'error',
             status_code: 500,
-            message: 'Erro na requisição à API do BrasilAPI',
+            message: 'ERRO NA REQUISIÇÃO À API DO BRASILAPI',
         };
 
     }   
@@ -78,22 +78,26 @@ export const buscarClima = async (latitude, longitude) => {
             case 400:
                 return {
                     status: 'error',
-                    message: "Coordenadas inválidas"
+                    http_code: 400,
+                    message: "COORDENADAS INVÁLIDAS"
                 };
             case 404:
                 return {
                     status: 'error',
-                    message: "Coordenadas não correspondem a uma localidade válida"
+                    http_code: 404,
+                    message: "COORDENADAS NÃO CORRESPONDEM A UMA LOCALIDADE VÁLIDA"
                 };
             case 500:
                 return {
                     status: 'error',
-                    message: "Erro interno ao consultar a API do BrasilAPI"
+                    http_code: 500,
+                    message: "ERRO INTERNO AO CONSULTAR A API DO BRASILAPI"
                 };
             default:
                 return {
                     status: 'error',
-                    message: "Erro Inesperado ao consultar a API do BrasilAPI"
+                    http_code: 500,
+                    message: "ERRO INESPERADO AO CONSULTAR A API DO BRASILAPI"
                 };       
         };
 
@@ -101,7 +105,8 @@ export const buscarClima = async (latitude, longitude) => {
         // Em caso de erro na requisição, retorna uma mensagem de erro genérica.
         return {
             status: 'error',
-            message: 'Erro na requisição à API do BrasilAPI',
+            http_code: 500,
+            message: 'ERRO NA REQUISIÇÃO A API DO BRASILAPI',
         };
 
     }   
@@ -119,20 +124,20 @@ export const brasilApiHealth = async () => {
         if(response.status !== 200) {
             return {
                 status: 'error',
-                message: 'Erro na resposta da API do BrasilAPI'
+                message: 'ERRO NA RESPOSTA DA API DO BRASILAPI'
             };
         }
 
         return {
             status: 'success',
-            message: 'API do BrasilAPI está respondendo normalmente'
+            message: 'API DO BRASILAPI ESTÁ RESPONDENDO NORMALMENTE'
         };
         
     } catch (error) {
 
         return {
             status: 'error',
-            message: "erro ao verificar saúde da API do BrasilAPI"
+            message: "ERRO AO VERIFICAR SAÚDE DA API DO BRASILAPI"
         };
 
     }
